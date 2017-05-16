@@ -4,8 +4,8 @@ const controller = require('lib/wiring/controller')
 const models = require('app/models')
 const Goal = models.goal
 
-// const authenticate = require('./concerns/authenticate')
-// const setUser = require('./concerns/set-current-user')
+const authenticate = require('./concerns/authenticate')
+const setUser = require('./concerns/set-current-user')
 const setModel = require('./concerns/set-mongoose-model')
 
 const index = (req, res, next) => {
@@ -56,8 +56,8 @@ module.exports = controller({
   update,
   destroy
 }, { before: [
-  // { method: setUser, only: ['index', 'show'] },
-  // { method: authenticate, except: ['index', 'show'] },
-  { method: setModel(Goal), only: ['show'] }
-  // { method: setModel(Goal, { forUser: true }), only: ['update', 'destroy'] }
+  { method: setUser, only: ['index', 'show'] },
+  { method: authenticate, except: ['index', 'show'] },
+  { method: setModel(Goal), only: ['show'] },
+  { method: setModel(Goal, { forUser: true }), only: ['update', 'destroy'] }
 ] })
