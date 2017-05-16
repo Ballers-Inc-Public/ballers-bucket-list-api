@@ -7,7 +7,7 @@ const goalSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  staus: {
+  status: {
     type: String,
     required: true
   }
