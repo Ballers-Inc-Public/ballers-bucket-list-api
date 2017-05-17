@@ -21,8 +21,6 @@ Install with `npm install`.
 -   [`express`](http://expressjs.com/)
 -   [`mongoose`](http://mongoosejs.com/)
 
-## Dependencies
-
 Dependencies are stored in [`package.json`](package.json).
 
 JavaScript files are stored in [`app/controllers`](app/controllers)
