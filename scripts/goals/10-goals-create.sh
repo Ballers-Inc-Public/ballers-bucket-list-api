@@ -1,12 +1,12 @@
 # sh
 #!/bin/sh
 
-API="http://localhost:4741"
+API="https://afternoon-reef-18895.herokuapp.com"
 URL_PATH="/goals"
 GOAL="I Made a BOOK2"
-TOKEN="lfDiWVEi4GvqmoCtQzfbSbVXt7MJHLoRUb1p9ufXKzQ=--PokJihZ5wPbZTJzpsMnTzP8Y7u+joMftAYx6uk+9ZIo="
+TOKEN="XyN9BwEZrHZSZmgk8hc+DlYTyfO7QQRkMfkedR41F0o=--0o7zpMh8tGxaKPPTWJ9ak36nkjJvnl9pAtJmhLwCHOU="
 # STATUS="YOU WROT IT"
-STATUS="Finished"
+STATUS="NOT"
 
 curl "${API}${URL_PATH}" \
   --include \
