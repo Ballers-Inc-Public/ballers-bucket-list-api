@@ -9,6 +9,7 @@ const goalSchema = new mongoose.Schema({
   },
   status: {
     type: String,
+    enum: ['Finished', 'Not Started'],
     required: true
   },
   _owner: {
