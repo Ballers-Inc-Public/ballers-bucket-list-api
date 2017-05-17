@@ -3,9 +3,10 @@
 
 API="http://localhost:4741"
 URL_PATH="/goals"
-TOKEN="$TOKEN"
-GOAL="This is an example goal"
-STATUS="This is an example status"
+GOAL="I Made a BOOK2"
+TOKEN="lfDiWVEi4GvqmoCtQzfbSbVXt7MJHLoRUb1p9ufXKzQ=--PokJihZ5wPbZTJzpsMnTzP8Y7u+joMftAYx6uk+9ZIo="
+# STATUS="YOU WROT IT"
+STATUS="Finished"
 
 curl "${API}${URL_PATH}" \
   --include \
