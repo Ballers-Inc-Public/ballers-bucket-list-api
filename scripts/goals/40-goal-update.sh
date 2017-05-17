@@ -4,11 +4,12 @@
 
 #!/bin/sh
 #!/bin/bash
-TOKEN="$TOKEN"
+
+TOKEN="XyN9BwEZrHZSZmgk8hc+DlYTyfO7QQRkMfkedR41F0o=--0o7zpMh8tGxaKPPTWJ9ak36nkjJvnl9pAtJmhLwCHOU="
 TITLE="Updated title"
 STATUS="Updated status"
-ID="591c65f4b0b6727a315b7bbf"
-API="http://localhost:4741"
+ID="591c8ee56a757d00120f8289"
+API="https://afternoon-reef-18895.herokuapp.com"
 URL_PATH="/goals"
 
 curl "${API}${URL_PATH}/${ID}" \

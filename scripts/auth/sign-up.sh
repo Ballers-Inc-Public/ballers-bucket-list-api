@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API="http://localhost:4741"
+API="https://afternoon-reef-18895.herokuapp.com"
 URL_PATH="/sign-up"
 EMAIL="test@test.com"
 PASSWORD="test1"
