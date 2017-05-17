@@ -1,18 +1,18 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# ballers-bucket-list-api
+# Balling Bucketlist API
 
-A template for starting projects with `express` as an API. Includes
-authentication and common middlewares.
+The purpose of this README is to detail the specifications of the Balling Bucketlist API.  The core requirements of this project from an API perspective are as follows:
+- Use MongoDB and Express to build an API.
+- Create an API using at least 2 related models, one of which should be a user.
+- Include all major CRUD functions in a RESTful API for at least one non-user model.
+- Use authentication in your API to restrict access to appropriate users.
 
-At the beginning of each cohort, update the versions in
-[`package.json`](package.json) by replace all versions with a glob (`*`) and
-running `npm update --save && npm update --save-dev`. You may wish to test these
-changes by deleting the `node_modules` directory and running `npm install`.
-Fix any conflicts.
+The README on the client repo includes additional details about the project's development can be found here: https://github.com/Ballers-Inc-Public/ballers-bucket-list-client
 
-This template follows Rails-like conventions for organizing controller and
-model code, and has a routing layer which is similar to the Rails routing DSL.
+## URL
+
+The API is deployed on heroku at the following location: https://infinite-garden-87904.herokuapp.com/
 
 ## Dependencies
 
@@ -68,23 +68,15 @@ Developers should store JavaScript files in [`app/controllers`](app/controllers)
  and [`app/models`](app/models).
 Routes are stored in [`config/routes.js`](config/routes.js)
 
-## Tasks
+## Data Structure
 
-Developers should run these often!
+Two models were created: Users and Goals.  The collections and associated attributes for each model are as follows:
+- Users
+  - Attributes: id, email, password,
+- Goals
+  - Attributes: title, status
 
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt reformat`: reformats all your code in a standard style
--   `grunt test`: runs any automated tests
-
-## API
-
-Use this as the basis for your own API documentation. Add a new third-level
-heading for your custom entities, and follow the pattern provided for the
-built-in user authentication documentation.
-
-Scripts are included in [`scripts`](scripts) to test built-in actions. Add your
-own scripts to test your custom API.
+These two models are related, and user authentication was written so that the content in the goals table is restricted to the appropriate users.
 
 ### Authentication
 
@@ -274,6 +266,155 @@ Content-Type: application/json; charset=utf-8
   }
 }
 ```
+
+### Goals
+
+| Verb   | URI Pattern         | Controller#Action |
+|--------|---------------------|-------------------|
+| GET    | `/goals`            | `goals#index`     |
+| POST   | `/goals`            | `goals#create`    |
+| PATCH  | `/goals/:id`        | `goals#update`    |
+| DELETE | `/goals/:id`        | `goals#destroy`   |
+
+
+#### GET /goals
+
+Request:
+
+```
+API="http://localhost:4741"
+URL_PATH="/goals"
+
+curl "${API}${URL_PATH}" \
+  --include \
+  --request GET \
+```
+
+Response:
+
+```md
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 276
+ETag: W/"114-FahAn14m9+ITMROu0LzEdrYaXN4"
+Date: Wed, 17 May 2017 15:09:45 GMT
+Connection: keep-alive
+```
+
+
+#### POST /goals
+
+Request:
+
+```
+API="http://localhost:4741"
+URL_PATH="/goals"
+GOAL="This is an example goal"
+TOKEN="$TOKEN"
+STATUS="This is an example status"
+
+curl "${API}${URL_PATH}" \
+  --include \
+  --request POST \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "goal": {
+      "title": "'"${GOAL}"'",
+      "status": "'"${STATUS}"'"
+    }
+  }'
+
+echo
+```
+
+Response:
+
+```
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 276
+ETag: W/"114-vzgjoYdKYVzvHU67O/YLcFNMUes"
+Date: Wed, 17 May 2017 15:02:12 GMT
+Connection: keep-alive
+```
+
+
+#### PATCH /goals/id
+
+Request:
+
+```
+TOKEN="$TOKEN"
+TITLE="Updated title"
+STATUS="Updated status"
+ID="591c65f4b0b6727a315b7bbf"
+API="http://localhost:4741"
+URL_PATH="/goals"
+
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request PATCH \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "goal": {
+      "title": "'"${TITLE}"'"
+    }
+  }'
+```
+
+Response:
+
+```
+HTTP/1.1 204 No Content
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Wed, 17 May 2017 15:06:06 GMT
+Connection: keep-alive
+```
+
+
+#### DELETE /goals/id
+
+Request:
+
+```
+TOKEN="$TOKEN"
+ID="591c65f4b0b6727a315b7bbf"
+API="http://localhost:4741"
+URL_PATH="/goals"
+
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request DELETE \
+  --header "Authorization: Token token=${TOKEN}"
+```
+
+Response:
+
+```
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+ETag: W/"7f1b9688acb48e25a2a9fb9fbe591407"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: a86d8325-07d2-4e22-9e5b-abb5c696af7b
+X-Runtime: 0.017991
+Vary: Origin
+Transfer-Encoding: chunked
+```
+
 
 ## [License](LICENSE)
 
