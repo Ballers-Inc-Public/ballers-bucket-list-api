@@ -32,9 +32,9 @@ Routes are stored in [`config/routes.js`](config/routes.js)
 
 Two models were created: Users and Goals.  The collections and associated attributes for each model are as follows:
 - Users
-  - Attributes: id, email, password,
+  - Attributes: id, email, password
 - Goals
-  - Attributes: title, status
+  - Attributes: id, title, status
 
 These two models are related, and user authentication was written so that the content in the goals table is restricted to the appropriate users.
 
