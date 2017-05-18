@@ -12,7 +12,7 @@ The README on the client repo includes additional details about the project's de
 
 ## URL
 
-The API is deployed on heroku at the following location: https://infinite-garden-87904.herokuapp.com/
+The API is deployed on heroku at the following location: https://afternoon-reef-18895.herokuapp.com/
 
 ## Dependencies
 
